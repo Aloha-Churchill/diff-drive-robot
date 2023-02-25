@@ -36,6 +36,10 @@ def generate_launch_description():
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'my_bot'],
                         output='screen')
+    
+    # rviz spawn
+    rviz2_node = Node(package='rviz2', executable='rviz2', name='rviz2', output='screen', 
+                      arguments=['-d', '/home/aloha/dev_ws/src/diff-drive-robot/config/view_bot.rviz'])
  
  
  
@@ -44,4 +48,5 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
+        rviz2_node
     ])
