@@ -8,15 +8,17 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
+ 
+package_name = 'diff-drive-robot'
+world_file = 'simple.world'
 
- 
 def generate_launch_description():
- 
- 
-    # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
-    # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
- 
-    package_name='diff-drive-robot'
+
+    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
+    pkg_share = get_package_share_directory(package_name)
+    world_path = os.path.join(pkg_share, 'worlds', world_file)
+    
  
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
@@ -24,22 +26,26 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 
+    # Set the path to the SDF model files.
+    gazebo_models_path = os.path.join(pkg_share, 'models')
+    os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
+
+    world = LaunchConfiguration('world')
+
+
+    world_arg = DeclareLaunchArgument(
+    name='world',
+    default_value=world_path,
+    description='Full path to the world model file to load')
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
-             )
-    
-    world_file = "simple_building.world"
+                    pkg_gazebo_ros, 'launch', 'gazebo.launch.py')]),
+                    launch_arguments={'world':world}.items())
 
-    world_arg = DeclareLaunchArgument(
-          'world',
-          default_value=[os.path.join(get_package_share_directory(package_name), 'worlds', world_file), ''],
-          description='SDF world file')
 
- 
-    # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
+    # # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'my_bot'],
@@ -54,8 +60,8 @@ def generate_launch_description():
     # Launch them all!
     return LaunchDescription([
         rsp,
-        gazebo,
         world_arg,
+        gazebo,
         spawn_entity,
         rviz2_node
     ])
