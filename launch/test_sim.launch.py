@@ -53,7 +53,7 @@ def generate_launch_description():
     
     # rviz spawn
     rviz2_node = Node(package='rviz2', executable='rviz2', name='rviz2', output='screen', 
-                      arguments=['-d', '/home/aloha/dev_ws/src/diff-drive-robot/config/drive_bot.rviz'])
+                      arguments=['-d', '/home/aloha/dev_ws/src/diff-drive-robot/config/depth_lidar_drive.rviz'])
  
  
  
