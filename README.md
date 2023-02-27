@@ -144,4 +144,8 @@ sudo service ssh --full-restart
 ## Gazebo Simulation
 * To create a simulation gazebo environment, the building editor was used in an empty world and exported as a model. Then the world was saved into the `simple.world` file which was then reconfigured in `test_sim.launch.py`
 
+## Running Gazebo Simulation + Controller
+`ros2 launch diff-drive-robot test_sim.launch.py`
+`ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+
 
