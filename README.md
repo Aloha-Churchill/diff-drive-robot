@@ -148,4 +148,11 @@ sudo service ssh --full-restart
 `ros2 launch diff-drive-robot test_sim.launch.py`
 `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
 
+# Packages
+
+Gazebo:
+
+Controller:
+`sudo apt install ros-foxy-ros2-control ros-foxy-ros2-controllers ros-foxy-gazebo-ros2-control`
+
 

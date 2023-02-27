@@ -6,6 +6,7 @@
             <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </hardware>
         <joint name="left_wheel_joint">
+        <!-- max and min velocity -->
             <command_interface name="velocity">
                 <param name="min">-10</param>
                 <param name="max">10</param>
