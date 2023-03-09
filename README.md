@@ -49,6 +49,9 @@ Some aspects of ROS architecture -> not complete yet
 
 https://miro.com/app/board/uXjVPvQsJ5U=/?share_link_id=557058027414
 
+## NAV2
+Download and build from NAV2 website:https://navigation.ros.org/build_instructions/index.html
+
 
 ## Sensors
 ### RPLidar A1
