@@ -68,6 +68,11 @@ To run lidar in ros
 ```
 ros2 run rplidar_ros rplidar_composition --ros-args -p serial_port:=/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.2:1.0-port0 -p frame_id:=laser_frame -p angle_compensate:=true -p scan_mode:=Standard
 ```
+To view lidar output in RVIZ
+```
+ros2 launch rplidar_ros view_rplidar.launch.py
+```
+RPLidar repository can be found here: https://github.com/allenh1/rplidar_ros.git
 
 ### Luxonis OAK-D Depth Camera
 Follow all instructions from https://github.com/luxonis/depthai-ros in the install from source sections until you hit the git clone command.
