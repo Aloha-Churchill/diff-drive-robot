@@ -77,6 +77,9 @@ ros2 launch rplidar_ros view_rplidar.launch.py
 ```
 RPLidar repository can be found here: https://github.com/allenh1/rplidar_ros.git
 
+IMPORTANT: RPLidar S2 drivers are available here:
+https://github.com/Slamtec/sllidar_ros2.git
+
 ### Luxonis OAK-D Depth Camera
 Follow all instructions from https://github.com/luxonis/depthai-ros in the install from source sections until you hit the git clone command.
 
