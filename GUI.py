@@ -54,7 +54,7 @@ def main_menu_hide()
   Shut_down.hide()
   Show_Stats.hide()
   
-#definitions#
+#definitions
 menu_header = Text(app, text = 'menu')
 menu_header.hide()
 Send_A_B = PushButton(app, command = send_A_B, text = 'Send on A to B')
@@ -63,18 +63,27 @@ Send_A_B.hide()
 Show_Stats = PushButton(app, command = show_stats, text = 'Show Stats')
 Show_Stats.bg = '#0894FF'
 Show_Stats.hide()
-A_B_message = Text(app, text = 'ON ROUTE FROM A TO B')
-A_B_message.hide()
-B_A_message = Text(app, text = 'ON ROUTE FROM B TO A')
-B_A_message.hide()
-stats = Text(app, text = 'SEUDO STATS') #will need to create a function to get appropriate stats
-stats.hide()
-shut_down_message = Text(app, text = 'Shutting down...')
-shut_down_message.hide()
 back_to_menu = PushButton(app, text = 'Back to Main Menu', command = main_menu)
 back_to_menu.bg = '#0894FF'
 back_to_menu.hide()
 
+#info retrieval 
+stats = Text(app, text = 'SEUDO STATS') #will need to create a function to get appropriate stats
+stats.hide()
+
+#messages / errors
+A_B_message = Text(app, text = 'ON ROUTE FROM A TO B')
+A_B_message.hide()
+B_A_message = Text(app, text = 'ON ROUTE FROM B TO A')
+B_A_message.hide()
+shut_down_message = Text(app, text = 'SHUTTING DOWN...')
+shut_down_message.hide()
+low_batt_message = Text(app, text = 'LOW BATTERY')
+low_batt_message.hide()
+obst_message = Text(app, text = 'OBSTACLE DETECTED')
+obst_message.hide()
+
+#authentication
 message = Text(app, text = 'surprise SHAWTY', size = 30)
 password = TextBox(app, hide_text = True, visible = True, width = 20)
 submit = PushButton(app, enabled = True, command = authenticate, text = 'submit', height = 1, width = 6)
