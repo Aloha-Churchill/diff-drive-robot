@@ -19,8 +19,13 @@ def authenticate():
   else:
     error('Error', 'Your password is incorrect.')
 
-def send_A_B:
-  route_message.show()
+def send_A_B():
+  A_B_message.show()
+  main_menu_hide()
+  back_to_menu.show()
+  
+def send_B_A():
+  B_A_message.show()
   main_menu_hide()
   back_to_menu.show()
   
@@ -58,8 +63,10 @@ Send_A_B.hide()
 Show_Stats = PushButton(app, command = show_stats, text = 'Show Stats')
 Show_Stats.bg = '#0894FF'
 Show_Stats.hide()
-route_message = Text(app, text = 'ON ROUTE FROM A TO B')
-route_message.hide()
+A_B_message = Text(app, text = 'ON ROUTE FROM A TO B')
+A_B_message.hide()
+B_A_message = Text(app, text = 'ON ROUTE FROM B TO A')
+B_A_message.hide()
 stats = Text(app, text = 'SEUDO STATS') #will need to create a function to get appropriate stats
 stats.hide()
 shut_down_message = Text(app, text = 'Shutting down...')
