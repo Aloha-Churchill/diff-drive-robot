@@ -1,3 +1,5 @@
+#See the list of booleans that can integrate outputs/inputs & GUI: https://docs.google.com/document/d/1xmZqPb1MOA_h7leA5A_Wdnwz5-oBN6WWSsotBhpbr8M/edit?usp=sharing
+
 from guizero import App, Text, error, TextBox, PushButton, Picture, info, ButtonGroup, Window
 passed = False 
 app = App(title = 'ROBO', width = 194*5, height = 110*5)
