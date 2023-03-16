@@ -1,4 +1,4 @@
-from guizero import App, Text, error, TextBox, PushButtonm, Picture, info, ButtonGroup, Window
+from guizero import App, Text, error, TextBox, PushButton, Picture, info, ButtonGroup, Window
 passed = False 
 app = App(title = 'ROBO', width = 194*5, height = 110*5)
 app.bg = '#FF5F15'
