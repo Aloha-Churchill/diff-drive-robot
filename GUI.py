@@ -19,7 +19,7 @@ def authenticate():
     error('Error', 'Your password is incorrect.')
 
 def send_A_B():
-  confirmAB = yesno("Confirm Route", "Confirm route guidance from A to B")
+  confirmAB = yesno('Confirm Route', 'Confirm route guidance from A to B')
   if confirmAB == True:
                     route_message1.show()
                     main_menu_hide()
@@ -29,7 +29,7 @@ def send_A_B():
                     main_menu()
   
 def send_B_A():
-   confirmAB = yesno("Confirm Route", "Confirm route guidance from B to A")
+   confirmAB = yesno('Confirm Route', 'Confirm route guidance from B to A')
   if confirmAB == True:
                     route_message2.show()
                     main_menu_hide()
@@ -95,9 +95,9 @@ pause.bg = '#24A0ED'
 pause.hide()
 
 #messages/errors
-low_batt_message = Text(app, text = 'LOW BATTERY') #not used add when battery <X
+low_batt_message = Text(app, text = 'LOW BATTERY') #not used add when battery <X, hide all other features or create pop up using info
 low_batt_message.hide()
-obst_message = Text(app, text = 'OBSTACLE DETECTED') #not used add when obst detected
+obst_message = Text(app, text = 'OBSTACLE DETECTED') #not used add when obst detected, hide all other features or create pop up using info
 obst_message.hide()
 route_message1 = Text(app, text = 'Navigating on route from A to B...')
 route_message1.hide()
