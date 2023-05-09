@@ -1,15 +1,14 @@
 #See the list of booleans that can integrate outputs/inputs & GUI: https://docs.google.com/document/d/1xmZqPb1MOA_h7leA5A_Wdnwz5-oBN6WWSsotBhpbr8M/edit?usp=sharing
 
-from guizero import App, Text, error, TextBox, PushButton, Picture, info, ButtonGroup, Window
+from guizero import App, Text, error, TextBox, PushButton, Picture, info, yesno, ButtonGroup, Window
 passed = False 
 app = App(title = 'ROBO', width = 194*5, height = 110*5)
-app.bg = '#FF5F15'
-app.text_size = 70
-app.font = 'Helvetica'
-app.text_color = '#2073B3'
+app.bg = '#D3ECF5'
+app.text_size = 50
+app.text_color = '#000000'
 
 def authenticate():
-  if password.value == 'password':
+  if password.value == 'password': #change password value here
     passed = True 
     password.hide()
     submit.hide()
@@ -20,74 +19,103 @@ def authenticate():
     error('Error', 'Your password is incorrect.')
 
 def send_A_B():
-  A_B_message.show()
-  main_menu_hide()
-  back_to_menu.show()
+  confirmAB = yesno("Confirm Route", "Confirm route guidance from A to B")
+  if confirmAB == True:
+                    route_message1.show()
+                    main_menu_hide()
+                    pause.show()
+                    #add command to start route guidance from A to B
+  else: 
+                    main_menu()
   
 def send_B_A():
-  B_A_message.show()
-  main_menu_hide()
-  back_to_menu.show()
+   confirmAB = yesno("Confirm Route", "Confirm route guidance from B to A")
+  if confirmAB == True:
+                    route_message2.show()
+                    main_menu_hide()
+                    pause.show()
+                    #add command to start route guidance from B to A
+  else: 
+                    main_menu()
   
 def show_stats():
   main_menu_hide()
-  stats.show()
+  trips.show()
+  battery.show()
+  status.show()
   back_to_menu.show()
   
 def shut_down():
   main_menu_hide()
   shut_down_message.show()
-  back_to_menu.show()
+  pause.show()
+  #add command to power off robot
   
 def main_menu():
   menu_header.show()
   Send_A_B.show()
   Shut_Down.show()
+  Show_Stats.show()
+  Shut_down.show()
   back_to_menu.hide()
-  route_message.hide()
-  stats.hide()
+  pause.hide()
+  route_message1.hide()
+  route_message2.hide()
+  batttery.hide()
+  status.hide()
   shut_down_message.hide()
   
 def main_menu_hide()
   menu_header.hide()
   Send_A_B.hide()
+  Send_B_A.hide()
   Shut_down.hide()
-  Show_Stats.hide()
+  Show_stats.hide()
   
 #definitions
-menu_header = Text(app, text = 'menu')
+menu_header = Text(app, text = 'Menu', size =80, color = '#000000')
 menu_header.hide()
-Send_A_B = PushButton(app, command = send_A_B, text = 'Send on A to B')
-Send_A_B.bg = '#0894FF'
+Send_A_B = PushButton(app, command = send_A_B, text = 'Send on A to B') 
+Send_A_B.bg = '#E6E6E6'
 Send_A_B.hide()
-Show_Stats = PushButton(app, command = show_stats, text = 'Show Stats')
+Send_B_A = PushButton(app, command = send_B_A, text = 'Send on B to A')
+Send_B_A.bg = '#D3D3D3'
+Send_B_A.hide()
+Show_Stats = PushButton(app, command = show_stats, text = 'View Stats')
 Show_Stats.bg = '#0894FF'
 Show_Stats.hide()
-back_to_menu = PushButton(app, text = 'Back to Main Menu', command = main_menu)
-back_to_menu.bg = '#0894FF'
+Shut_down = PushButton(app, command = shut_down, text = 'Shut Down')
+Shut_down.bg = '#D3D3D3'
+Shut_down.hide()
+back_to_menu = PushButton(app, text = 'Main Menu', command = main_menu)
+back_to_menu.bg = '#24A0ED'
 back_to_menu.hide()
+pause = PushButton(app, text = 'Pause', command = main_menu)  #create/replace command with pause fxn to pause the robot 
+pause.bg = '#24A0ED'
+pause.hide()
 
-#info retrieval 
-stats = Text(app, text = 'SEUDO STATS') #will need to create a function to get appropriate stats
-stats.hide()
-
-#messages / errors
-A_B_message = Text(app, text = 'ON ROUTE FROM A TO B')
-A_B_message.hide()
-B_A_message = Text(app, text = 'ON ROUTE FROM B TO A')
-B_A_message.hide()
-shut_down_message = Text(app, text = 'SHUTTING DOWN...')
-shut_down_message.hide()
-low_batt_message = Text(app, text = 'LOW BATTERY')
+#messages/errors
+low_batt_message = Text(app, text = 'LOW BATTERY') #not used add when battery <X
 low_batt_message.hide()
-obst_message = Text(app, text = 'OBSTACLE DETECTED')
+obst_message = Text(app, text = 'OBSTACLE DETECTED') #not used add when obst detected
 obst_message.hide()
+route_message1 = Text(app, text = 'Navigating on route from A to B...')
+route_message1.hide()
+route_message2 = Text(app, text = 'Navigating on route from B to A...')
+route_message2.hide()
+trips = Text(app, text = 'Trips today: 21') #create/replace with trips fxn to count trips, store and display value
+trips.hide()
+battery = Text(app, text = 'Battery life: 75%') #create/replace with battery fxn to measure battery %, store and display value
+battery.hide()
+status = Text(app, text = 'Status: Paused') #create/replace with status fxn that updates value with current status
+status.hide()
+shut_down_message = Text(app, text = 'Shutting down...') 
+shut_down_message.hide()
 
 #authentication
-message = Text(app, text = 'surprise SHAWTY', size = 30)
-password = TextBox(app, hide_text = True, visible = True, width = 20)
-submit = PushButton(app, enabled = True, command = authenticate, text = 'submit', height = 1, width = 6)
-submit.bg = '#0894FF'
+message = Text(app, text = 'Sign In', size = 80, color = '#000000')
+password = TextBox(app, hide_text = True, visible = True)
+submit = PushButton(app, enabled = True, command = authenticate, text = 'Submit'
+submit.bg = '#24A0ED'
 
 app.display()
-  
